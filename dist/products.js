@@ -4,6 +4,7 @@ export const PRODUCTS=[
  {id:'hoodie',name:'Hoodie',title:'Pullover hoodie',price:3200,desc:'Your artwork, with room to breathe',bg:'#e5e8db',apparel:true,print:{maxW:280,maxH:280,w:160,h:150,cy:.12}},
  {id:'hoodie-alt',name:'Hoodie II',title:'Hoodie · alternate fit',price:3200,desc:'Another fit for your next collection',bg:'#e8e6e0',apparel:true,print:{maxW:280,maxH:280,w:160,h:150,cy:.12}},
  {id:'sweater',name:'Sweater',title:'Everyday sweater',price:2800,desc:'A blank layer for your signature',bg:'#e5e9e1',apparel:true,print:{maxW:280,maxH:300,w:160,h:170,cy:.12}},
+ {id:'quarter-zip',name:'Quarter zip',title:'Quarter-zip jumper',price:2800,desc:'A stand collar and a canvas for your design',bg:'#e7e6df',apparel:true,print:{maxW:260,maxH:260,w:160,h:160,cy:-.25}},
  {id:'mug',name:'Mug',title:'Ceramic coffee mug',price:900,desc:'Make the everyday ritual yours',bg:'#ece5ee',supportsBack:false,note:'Continuous wrap around the mug body. The handle and its attachment zone are excluded.',print:{maxW:236,maxH:85,w:65,h:65,cy:0,shape:'wrap',surfaceName:'Mug wrap · handle excluded',radiusMm:49.65,axisMmX:-25.4,arc:Math.PI*1.5,start:Math.PI*.75}},
  {id:'sling',name:'Sling bag',title:'Everyday sling bag',price:1200,desc:'A compact canvas for your daily carry',bg:'#e5e9ed',print:{maxW:160,maxH:160,w:100,h:100,cy:-.8}},
  {id:'leather-sling',name:'Leather sling',title:'Leather sling bag',price:1200,desc:'Make your signature part of the journey',bg:'#eadfd4',print:{maxW:160,maxH:130,w:100,h:80,cx:.43,cy:-.5}},

@@ -45,6 +45,15 @@
     "vertexColors": 0
   },
   {
+    "id": "quarter-zip",
+    "file": "quarter-zip.glb",
+    "sourceArchive": "Reference-based procedural reconstruction",
+    "bytes": 1796972,
+    "sha256": "05505aeb7e543b1f49cace1f9a6dbf5b1be4fe15cc42cac0a0ec974c31980c3a",
+    "textures": 0,
+    "vertexColors": 0
+  },
+  {
     "id": "mug",
     "file": "mug.glb",
     "sourceArchive": "pac-man-ceramic-coffee-mug-paladone.zip",
