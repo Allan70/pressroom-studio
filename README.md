@@ -33,6 +33,12 @@ node verify-neutral.mjs
 - `preview.cjs`: local static preview server.
 - `.openai/hosting.json`: configuration for the existing private Sites deployment.
 
+## GitHub Pages
+
+The workflow in `.github/workflows/pages.yml` deploys the `dist/` directory after a push to `main`, or when run manually from GitHub Actions. In repository **Settings → Pages**, select **GitHub Actions** as the publishing source. GitHub Pages must be available for the repository's visibility and account plan.
+
+The site uses relative asset URLs so it works under the repository's Pages subdirectory.
+
 ## Scope and assets
 
 This is a UI prototype. Checkout, payment, production ordering, and fulfilment are not connected. Product dimensions and prices are illustrative.
