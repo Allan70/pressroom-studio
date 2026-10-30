@@ -1,0 +1,92 @@
+[
+  {
+    "id": "tee",
+    "file": "tee.glb",
+    "sourceArchive": "t-shirt-3d-model-free.zip",
+    "bytes": 3213708,
+    "sha256": "4524a7592744afed44a1c3d5fd0ccb6d377c65fbcfe300cdf4117ee50ec3a9c3",
+    "textures": 0,
+    "vertexColors": 0
+  },
+  {
+    "id": "tee-fitted",
+    "file": "tee-fitted.glb",
+    "sourceArchive": "t-shirt-for-female.zip",
+    "bytes": 208796,
+    "sha256": "56b06377cda43cc218caa2a27d6274b1291a09183139744ebd70364429cfda70",
+    "textures": 0,
+    "vertexColors": 0
+  },
+  {
+    "id": "hoodie",
+    "file": "hoodie.glb",
+    "sourceArchive": "hoodie.zip",
+    "bytes": 1209224,
+    "sha256": "4b8777e7724a34cb8d835b960c5bb1322e4f9bccb142e08054ba8757e8d18882",
+    "textures": 0,
+    "vertexColors": 0
+  },
+  {
+    "id": "hoodie-alt",
+    "file": "hoodie-alt.glb",
+    "sourceArchive": "hoodie-black.zip",
+    "bytes": 1274548,
+    "sha256": "2a124c080964743dd201402af347ffe0b95f44c7b171ad6e7ca76838403a3610",
+    "textures": 0,
+    "vertexColors": 0
+  },
+  {
+    "id": "sweater",
+    "file": "sweater.glb",
+    "sourceArchive": "sweater-pack.zip",
+    "bytes": 135808,
+    "sha256": "44aa05fc35e2839449045a772e7fcce218a1160a14755e793e72fb6d2b9fa4e5",
+    "textures": 0,
+    "vertexColors": 0
+  },
+  {
+    "id": "mug",
+    "file": "mug.glb",
+    "sourceArchive": "pac-man-ceramic-coffee-mug-paladone.zip",
+    "bytes": 2117696,
+    "sha256": "f8d0148a3c8aa6a0d0755bd13d5f4bd384bfb6bcf978e6a9306c3c7a23867c28",
+    "textures": 0,
+    "vertexColors": 0
+  },
+  {
+    "id": "sling",
+    "file": "sling.glb",
+    "sourceArchive": "sling-bag (1).zip",
+    "bytes": 1191152,
+    "sha256": "2ada88ff5e3da0e6fae2d6ff313448bdeeb8c136e61b0ea934b49f52d9b90aca",
+    "textures": 0,
+    "vertexColors": 0
+  },
+  {
+    "id": "leather-sling",
+    "file": "leather-sling.glb",
+    "sourceArchive": "leather-sun-wing-sling-bag.zip",
+    "bytes": 1743604,
+    "sha256": "77341b6692a2a42f8766595f408d440f43dd5c4387e8ac3bfed434b39fb15297",
+    "textures": 0,
+    "vertexColors": 0
+  },
+  {
+    "id": "cap",
+    "file": "cap.glb",
+    "sourceArchive": "baseball-cap.zip",
+    "bytes": 1682520,
+    "sha256": "7476cc9c092bc7083a841e6933781f05711e742616a0013d35f8819e5340712e",
+    "textures": 0,
+    "vertexColors": 0
+  },
+  {
+    "id": "magnet",
+    "file": "magnet.glb",
+    "sourceArchive": "fridge-magnet-kayu-motif-ketam.zip",
+    "bytes": 211732,
+    "sha256": "85d3e0c88d837114e8571ac9f88032475f16964082ecfb658c335318f62d5c88",
+    "textures": 0,
+    "vertexColors": 0
+  }
+]
