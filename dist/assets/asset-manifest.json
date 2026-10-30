@@ -47,9 +47,9 @@
   {
     "id": "quarter-zip",
     "file": "quarter-zip.glb",
-    "sourceArchive": "Reference-based procedural reconstruction",
-    "bytes": 1796972,
-    "sha256": "05505aeb7e543b1f49cace1f9a6dbf5b1be4fe15cc42cac0a0ec974c31980c3a",
+    "sourceArchive": "ed6e5a1b-a18b-4b47-8c2d-856c077ec73b.obj",
+    "bytes": 1800740,
+    "sha256": "fd19e7eaab065cda3e9477e3bae68a02aee25eaf6fe739a05d0b2653be3e3255",
     "textures": 0,
     "vertexColors": 0
   },

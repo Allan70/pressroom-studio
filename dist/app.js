@@ -1,7 +1,7 @@
 import {createSurfaceEditor} from './surface-editor.js';
 import {TEXT_DEFAULTS,paintText} from './text-layout.js';
 import {PRODUCTS as products} from './products.js';
-import {createStudio} from './engine.js';
+import {createStudio} from './engine.js?v=refined-2';
 const $=id=>document.getElementById(id);
 let mapEditor,textStyle={...TEXT_DEFAULTS};const productColors={};let savedColours=[];
 try{const stored=JSON.parse(sessionStorage.getItem('pressroom-colours-v1')||'{}');savedColours=Array.isArray(stored.saved)?[...new Set(stored.saved.filter(c=>typeof c==='string'&&/^#[0-9a-f]{6}$/i.test(c)).map(c=>c.toLowerCase()))]:[];for(const [id,c] of Object.entries(stored.products||{}))if(products.some(p=>p.id===id)&&Array.isArray(c)&&/^#[0-9a-f]{6}$/i.test(c[1]))productColors[id]=[String(c[0]),c[1]]}catch{}
@@ -15,7 +15,7 @@ const icons={tee:'<path d="M19 8 9 13l-6 12 10 5 5-7v32h28V23l5 7 10-5-6-12-10-5
 const colors=[['Neutral','#f4f2ec'],['Forest','#344c3d'],['Ink','#30363e'],['Oat','#e5ddc9'],['Lavender','#b4a4c6'],['Clay','#b76e55']];
 let product=products[0],color=productColors[products[0].id]||colors[0],qty=1,artMode='art',uploaded=null,hasArt=false,back=false,bag=[];
 function oldIcon(id,c='#87927b'){return `<svg viewBox="0 0 64 64" fill="${c}" stroke="#233c32" stroke-width=".8" aria-hidden="true">${icons[id]}</svg>`}
-function icon(id){const p=products.find(p=>p.id===id);return `<img class="product-thumb" src="assets/thumbs/${id}.png?v=neutral-10" alt="${p?.title||'Product preview'}" loading="lazy">`}
+function icon(id){const p=products.find(p=>p.id===id);return `<img class="product-thumb" src="assets/thumbs/${id}.png?v=${id==='quarter-zip'?'refined-2':'neutral-10'}" alt="${p?.title||'Product preview'}" loading="lazy">`}
 $('products').innerHTML=products.map(p=>`<button class="product ${p.id==='tee'?'selected':''}" data-product="${p.id}" aria-pressed="${p.id==='tee'}">${icon(p.id)}${p.name}</button>`).join('');
 $('catalog').innerHTML=products.map(p=>`<article class="collection-item"><button class="collection-product" data-product="${p.id}"><div class="tile-art" style="background:${p.bg}">${icon(p.id)}<span>↗</span></div><strong>${p.title}</strong><small>${p.desc}</small></button><div class="product-colour"><label for="colour-${p.id}">${p.finishes?'Metal colour':'Product colour'}</label><input type="color" id="colour-${p.id}" data-custom-colour="${p.id}" value="${(p.finishes||colors)[0][1]}" aria-label="${p.title} custom colour"><input class="product-hex" data-colour-hex="${p.id}" value="${(p.finishes||colors)[0][1]}" aria-label="${p.title} colour hex code" maxlength="7" spellcheck="false"></div></article>`).join('');
 function syncProductColour(id,value){document.querySelectorAll('[data-custom-colour="'+id+'"],[data-colour-hex="'+id+'"]').forEach(input=>input.value=value)}

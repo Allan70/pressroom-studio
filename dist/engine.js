@@ -39,7 +39,7 @@ surfaceMaps.set(key,{signature,map});return map}
 
  }
  async function loadProduct(next,color){id=next;tint=color;const token=++serial;host.setAttribute('aria-busy','true');try{
- let asset=cache.get(next);if(!asset){asset=await loader.loadAsync('./assets/'+next+'.glb?v=neutral-10');cache.set(next,asset)}if(token!==serial)return;
+ let asset=cache.get(next);if(!asset){asset=await loader.loadAsync('./assets/'+next+'.glb?v='+(next==='quarter-zip'?'refined-2':'neutral-10'));cache.set(next,asset)}if(token!==serial)return;
  clean(model);meshes=[];const root=asset.scene;root.updateMatrixWorld(true);root.traverse(o=>{if(!o.isMesh)return;const geometry=o.geometry.clone();if(o.isSkinnedMesh){const a=geometry.attributes.position,v=new T.Vector3();for(let i=0;i<a.count;i++){v.fromBufferAttribute(a,i);o.applyBoneTransform(i,v);a.setXYZ(i,v.x,v.y,v.z)}}geometry.applyMatrix4(o.matrixWorld);
  geometry.morphAttributes={};geometry.computeBoundingBox();geometry.computeBoundingSphere();let material;
  if(next==='magnet'&&o.name.includes('Epoxy_Dome'))material=new T.MeshPhysicalMaterial({color:'#ffffff',transmission:1,roughness:.075,ior:1.48,thickness:.09,clearcoat:1,clearcoatRoughness:.04,envMapIntensity:1.1,side:T.FrontSide});
