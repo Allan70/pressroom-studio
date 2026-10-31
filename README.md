@@ -52,3 +52,9 @@ Third-party model rights remain with their original authors. Source archives and
 Dark appearance is the default. The Light UI / Dark UI control remembers an explicit preference in localStorage. Product search lives in the left library; design, transform, scene and export controls live in the right inspector. Keys 1–4 switch panels outside text fields. The layout stacks on small screens.
 
 Artwork composition uses an OffscreenCanvas worker with a bounded latest-edit queue and a main-thread fallback. Meshopt model decoding uses up to two workers, with original neutral GLBs as a compatibility fallback. The preview renders on changes instead of continuously and pauses outside the viewport. See [compression tooling](tools/model-codec/README.md) for reproducible encoding and validation.
+
+## Direct 3D artwork placement
+
+The Transform inspector includes a surface picker, local/world Move/Rotate/Scale gizmos, optional snapping, numeric 3D pose, projection reach and surface offset. A picked ray can expose multiple outward-facing surfaces; choose a deeper layer to target geometry beneath an overlap. The selected mesh and projection reach restrict where the decal appears. Actual geometry depth controls occlusion; hidden artwork is not rendered through an overlapping part. Transform handles and guides are omitted from PNG exports. On mugs, free transform switches to a surface decal; Reset print area position restores the handle-safe wrap. Pose, selected mesh, reach and offset are saved per print side in editable design files. Coordinates use the approximate model scale, not a manufacturing template.
+
+During a gizmo drag, projection updates are coalesced to at most 30 per second and the preview temporarily uses a smaller composed texture. Full artwork resolution is restored on release. Run `node verify-surface-picking.mjs` for overlap ordering, interior-face rejection and rotated-pivot checks.
