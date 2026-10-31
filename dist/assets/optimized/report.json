@@ -1,0 +1,107 @@
+{
+  "method": "EXT_meshopt_compression, without quantization or simplification",
+  "originalBytes": 14789528,
+  "encodedBytes": 10010608,
+  "reductionPercent": 32.3,
+  "models": [
+    {
+      "id": "tee",
+      "originalBytes": 3213708,
+      "encodedBytes": 2039608,
+      "reductionPercent": 36.5,
+      "decodeMs": 41.34,
+      "exactAttributes": true,
+      "identicalTriangles": true
+    },
+    {
+      "id": "tee-fitted",
+      "originalBytes": 208796,
+      "encodedBytes": 160460,
+      "reductionPercent": 23.1,
+      "decodeMs": 7.01,
+      "exactAttributes": true,
+      "identicalTriangles": true
+    },
+    {
+      "id": "hoodie",
+      "originalBytes": 1209224,
+      "encodedBytes": 1008852,
+      "reductionPercent": 16.6,
+      "decodeMs": 12.32,
+      "exactAttributes": true,
+      "identicalTriangles": true
+    },
+    {
+      "id": "hoodie-alt",
+      "originalBytes": 1274548,
+      "encodedBytes": 1042760,
+      "reductionPercent": 18.2,
+      "decodeMs": 14.23,
+      "exactAttributes": true,
+      "identicalTriangles": true
+    },
+    {
+      "id": "sweater",
+      "originalBytes": 135808,
+      "encodedBytes": 91056,
+      "reductionPercent": 33,
+      "decodeMs": 6.32,
+      "exactAttributes": true,
+      "identicalTriangles": true
+    },
+    {
+      "id": "quarter-zip",
+      "originalBytes": 1800740,
+      "encodedBytes": 1156616,
+      "reductionPercent": 35.8,
+      "decodeMs": 15.18,
+      "exactAttributes": true,
+      "identicalTriangles": true
+    },
+    {
+      "id": "mug",
+      "originalBytes": 2117696,
+      "encodedBytes": 1308148,
+      "reductionPercent": 38.2,
+      "decodeMs": 18.24,
+      "exactAttributes": true,
+      "identicalTriangles": true
+    },
+    {
+      "id": "sling",
+      "originalBytes": 1191152,
+      "encodedBytes": 866696,
+      "reductionPercent": 27.2,
+      "decodeMs": 13.32,
+      "exactAttributes": true,
+      "identicalTriangles": true
+    },
+    {
+      "id": "leather-sling",
+      "originalBytes": 1743604,
+      "encodedBytes": 1245728,
+      "reductionPercent": 28.6,
+      "decodeMs": 19.56,
+      "exactAttributes": true,
+      "identicalTriangles": true
+    },
+    {
+      "id": "cap",
+      "originalBytes": 1682520,
+      "encodedBytes": 979244,
+      "reductionPercent": 41.8,
+      "decodeMs": 14.67,
+      "exactAttributes": true,
+      "identicalTriangles": true
+    },
+    {
+      "id": "magnet",
+      "originalBytes": 211732,
+      "encodedBytes": 111440,
+      "reductionPercent": 47.4,
+      "decodeMs": 12.07,
+      "exactAttributes": true,
+      "identicalTriangles": true
+    }
+  ]
+}

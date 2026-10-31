@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {createArtworkRenderer} from './dist/artwork-renderer.js';
+let instance;
+globalThis.OffscreenCanvas=class{};globalThis.createImageBitmap=()=>{};
+globalThis.Worker=class{constructor(){instance=this;this.messages=[]}postMessage(value){this.messages.push(value)}terminate(){this.terminated=true}};
+const renderer=createArtworkRenderer();
+const first=renderer.render({text:'first'}),superseded=renderer.render({text:'intermediate'}),latest=renderer.render({text:'final'});
+assert.equal(await superseded,null);assert.equal(instance.messages.length,1);
+instance.onmessage({data:{id:1,bitmap:'first bitmap'}});assert.equal((await first).bitmap,'first bitmap');
+assert.equal(instance.messages.length,2);assert.equal(instance.messages[1].text,'final');
+instance.onmessage({data:{id:2,bitmap:'final bitmap'}});assert.equal((await latest).bitmap,'final bitmap');
+const errorJob=renderer.render({text:'failure'});instance.onerror();await assert.rejects(errorJob,/unavailable/);assert.equal(instance.terminated,true);await assert.rejects(renderer.render({}),/unavailable/);
+delete globalThis.Worker;assert.equal(createArtworkRenderer(),null);
+console.log('Worker queue verified: bounded pending work, latest edit wins, errors settle jobs, unsupported fallback.');

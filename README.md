@@ -46,3 +46,9 @@ This is a UI prototype. Checkout, payment, production ordering, and fulfilment a
 Uploaded designs are processed in the browser. Saved design JSON includes the artwork and settings; saved custom colours remain in the current tab session.
 
 Third-party model rights remain with their original authors. Source archives and library notices are documented in `dist/assets/credits.html`. No additional rights to those assets are granted by this repository.
+
+## Creative workspace
+
+Dark appearance is the default. The Light UI / Dark UI control remembers an explicit preference in localStorage. Product search lives in the left library; design, transform, scene and export controls live in the right inspector. Keys 1–4 switch panels outside text fields. The layout stacks on small screens.
+
+Artwork composition uses an OffscreenCanvas worker with a bounded latest-edit queue and a main-thread fallback. Meshopt model decoding uses up to two workers, with original neutral GLBs as a compatibility fallback. The preview renders on changes instead of continuously and pauses outside the viewport. See [compression tooling](tools/model-codec/README.md) for reproducible encoding and validation.
