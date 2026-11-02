@@ -1,3 +1,4 @@
+import { icon } from './vendor/icons.js';
 const $ = id => document.getElementById(id);
 const studio = $('studio');
 const library = document.createElement('section');
@@ -21,11 +22,11 @@ for (const button of document.querySelectorAll('[data-step]')) {
 }
 const topbar = document.createElement('div');
 topbar.className = 'document-bar';
-topbar.innerHTML = `<div><span class="document-mark">✳</span><strong>Your next creation</strong><span class="document-type">Merchandise / 3D studio</span></div><div class="document-actions"><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="openDesign">Open design</button><button id="exportDesign" class="export-action">Export mockup ↗</button></div>`;
+topbar.innerHTML = `<div><strong>Your next creation</strong><span class="document-type">Merchandise / 3D studio</span></div><div class="document-actions"><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="openDesign">${icon('file')}Open design</button><button id="exportDesign" class="export-action">Export mockup ↗</button></div>`;
 studio.before(topbar);
 $('openDesign').onclick = () => $('loadDesign').click();
 $('exportDesign').onclick = () => document.querySelector('[data-step="share"]').click();
-function syncTheme() { const dark = document.documentElement.dataset.theme !== 'light'; $('themeToggle').textContent = dark ? 'Light UI' : 'Dark UI'; $('themeToggle').setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme'); }
+function syncTheme() { const dark = document.documentElement.dataset.theme !== 'light'; $('themeToggle').innerHTML = icon(dark ? 'sun' : 'moon') + (dark ? 'Light UI' : 'Dark UI'); $('themeToggle').setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme'); }
 $('themeToggle').onclick = () => { document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'; try {localStorage.setItem('pressroom-theme', document.documentElement.dataset.theme)} catch {} syncTheme(); };
 syncTheme();
 $('assetSearch').oninput = e => {let count=0; for(const b of $('products').children) {b.hidden = !b.textContent.toLowerCase().includes(e.target.value.trim().toLowerCase()); if(!b.hidden)count++} $('searchEmpty').hidden = count > 0;};

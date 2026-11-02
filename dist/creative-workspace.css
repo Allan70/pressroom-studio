@@ -22,3 +22,5 @@ input:not([type=range]):not([type=checkbox]):not([type=file]):not([type=color]),
 
 .projector-numeric{margin:16px 0;border-top:1px solid var(--line);padding-top:12px;font-size:10px;color:var(--muted)}.projector-numeric summary{cursor:pointer}.projector-numeric .number-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.projector-numeric input{padding:8px!important;min-width:0}
 @media(min-width:851px){.studio{height:calc(100vh - 110px);min-height:560px;max-height:900px;overflow:hidden;align-items:stretch}.workspace{position:relative;top:0;height:100%;min-height:0;max-height:none;align-self:stretch}.studio>aside,.asset-library{height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent}.workflow-tabs{position:sticky;top:-1px;z-index:3;background:var(--panel)}}
+
+.document-actions button{display:inline-flex;align-items:center;justify-content:center;gap:6px}.ui-icon{flex-shrink:0} .document-bar{margin-top:22px}

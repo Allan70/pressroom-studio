@@ -1,0 +1,9 @@
+{
+  "name": "pressroom-studio",
+  "private": true,
+  "scripts": {
+    "dev": "node preview.cjs",
+    "dev-host": "node --watch preview.cjs --host"
+  },
+  "engines": { "node": ">=22" }
+}

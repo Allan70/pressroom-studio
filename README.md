@@ -12,6 +12,16 @@ node preview.cjs
 
 Open http://127.0.0.1:4173/#studio. If another copy is already running on port 4173, stop that copy before starting this one.
 
+For development on a remote machine over SSH:
+
+```sh
+npm run dev-host
+# Optional custom port:
+PORT=5173 npm run dev-host
+```
+
+`dev-host` binds to `0.0.0.0` and watches the server for changes. Static file edits appear on browser refresh. Set `HOST` to override the bind address. For private access, run `HOST=127.0.0.1 npm run dev-host` remotely and `ssh -N -L 4173:127.0.0.1:4173 user@host` locally, then open http://127.0.0.1:4173/#studio. To debug the Node server through an SSH tunnel, run `node --inspect=127.0.0.1:9229 preview.cjs --host` and forward port 9229 with `ssh -N -L 9229:127.0.0.1:9229 user@host`; browser developer tools debug the client app.
+
 The app is static and its runtime libraries are bundled under `dist/vendor/`. No package installation or build step is required.
 
 ## Check the project
