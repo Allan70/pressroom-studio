@@ -1,0 +1,82 @@
+/* Readable defaults: editing labels are content, not decorative microcopy. */
+:root{--muted:#b8bbc7;--line:#41444f}
+:root[data-theme=light]{--muted:#545b69;--line:#c8cdd6}
+body{font:14px/1.5 Arial,Helvetica,sans-serif}
+header nav{font-size:14px}
+.editor-screen .studio{grid-template-columns:220px minmax(0,1fr) 360px}
+.editor-screen .studio>aside{padding:20px}
+.editor-screen .studio>aside>.step-label,.editor-screen .studio>aside>.muted{display:none}
+.editor-screen .studio>aside>h2{font-size:19px;margin:0 0 18px;letter-spacing:0}
+.editor-screen .document-bar{padding:12px 16px;gap:12px}
+.document-bar strong{font-size:15px}.document-type{display:none}
+.editor-screen .document-actions button{font-size:13px;min-height:40px;padding:8px 12px;gap:7px}
+.document-actions .ui-icon{width:18px;height:18px}
+.editor-screen .workflow-tabs{gap:0;margin:0 0 20px}
+.editor-screen .workflow-tabs button{min-height:44px;padding:10px 4px;font-size:14px;gap:7px}
+.workflow-tabs img{width:18px;height:18px}
+.editor-screen .field-head{font-size:15px;margin:22px 0 12px;gap:8px;font-weight:600}
+.field-head b{display:none}.field-head span{font-size:13px;font-weight:400}
+.editor-screen .workflow-panel h3{font-size:18px;line-height:1.4;margin:0 0 10px}
+.editor-screen .panel-help,.editor-screen .small-label,.editor-screen .map-caption,.editor-screen .map-legend,.editor-screen .guide-note,.editor-screen .credits-link{font-size:13px;line-height:1.6;color:var(--muted)}
+.editor-screen .control-label,.editor-screen .range-label,.editor-screen .number-grid>label,.editor-screen .text-format-row label,.editor-screen .check-label{font-size:14px;line-height:1.5;color:var(--ink)}
+.editor-screen input:not([type=range]):not([type=checkbox]):not([type=color]):not([type=file]),.editor-screen select,.editor-screen textarea{font-size:14px;min-height:40px;padding:9px 10px;line-height:1.4}
+.editor-screen .asset-search input{font-size:14px!important;padding:10px 0!important}
+.editor-screen input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent);flex:none}
+.editor-screen input[type=range]{height:6px;margin:16px 0 22px}
+.editor-screen .secondary,.editor-screen .primary,.editor-screen .file-label,.editor-screen .preset-row button,.editor-screen .map-zoom button,.editor-screen .visual-transform button,.editor-screen .step-navigation button{font-size:14px;min-height:40px;padding:9px 12px;line-height:1.4}
+.editor-screen .seg button{font-size:14px;min-height:36px;padding:8px 12px}
+.editor-screen .upload{padding:24px 12px;gap:9px}.editor-screen .upload strong{font-size:15px}.editor-screen .upload small{font-size:13px}
+.editor-screen .artline{font-size:13px;line-height:1.5;gap:10px}.editor-screen .artline button{width:36px;height:36px;flex:none}
+.editor-screen .product-colour label{font-size:13px;line-height:1.4}
+.editor-screen .product-hex{font-size:13px!important;width:92px}
+.editor-screen .swatch{width:30px;height:30px}
+.editor-screen .asset-library h2{font-size:17px;line-height:1.4;margin:0 0 16px;letter-spacing:0}
+.library-heading{display:none}
+.editor-screen .asset-library{padding:18px 12px}
+.editor-screen .product{font-size:13px;line-height:1.3;padding:8px 4px;color:var(--ink)}
+.editor-screen .product-thumb{height:70px;margin-bottom:8px}
+.editor-screen .products{gap:10px}
+.editor-screen .canvas-top{padding:11px 14px;min-height:44px;gap:14px}
+.editor-screen .viewport-hint,#modelNote{font-size:12px;line-height:1.5;max-width:none}
+.editor-screen .viewport-tools{padding:5px;gap:3px}
+.editor-screen .viewport-tool{width:38px;min-width:38px;height:38px}
+.editor-screen .viewport-tool .ui-icon{width:21px;height:21px}
+.editor-screen .viewport-dock{max-width:calc(100% - 78px)}
+.editor-screen .viewport-dock.expanded{width:340px}
+.editor-screen .viewport-dock [role=tab]{font-size:14px;min-height:42px;padding:10px 12px;gap:7px}
+.editor-screen .viewport-dock [role=tab] svg{width:18px;height:18px}
+.editor-screen .viewport-dock [role=tabpanel]{padding:16px;max-height:min(440px,calc(100dvh - 300px))}
+.editor-screen .viewport-dock h3,.editor-screen .viewport-dock h4{font-size:16px;letter-spacing:0}
+.editor-screen .viewport-dock label,.editor-screen .viewport-dock .check-label{font-size:13px}
+.editor-screen .viewport-dock .panel-help{font-size:13px}
+.editor-screen .camera-presets button{font-size:13px;min-height:40px;padding:8px}
+.editor-screen .viewport-dock .dock-close{min-width:36px;min-height:42px;padding:8px}
+.editor-screen .surface-map-editor{padding:12px;margin-top:20px}
+.editor-screen .map-heading strong{font-size:14px}
+.editor-screen .map-zoom{flex-wrap:wrap;gap:6px}
+.editor-screen .map-zoom button{font-size:12px;padding:7px 9px;min-height:36px}
+.editor-screen .map-legend{flex-wrap:wrap;gap:8px}
+.editor-screen .surface-map-editor .panel-help{font-size:13px}
+.editor-screen .visual-transform label,.editor-screen .unbounded-scale span{font-size:13px}
+.editor-screen .nudge button{min-width:38px;min-height:38px}
+.editor-screen .nudge label,.editor-screen .order-row>label{font-size:13px}
+.editor-screen .quantity{height:40px;font-size:14px}.editor-screen .quantity button{min-width:40px}
+.editor-screen .total{font-size:14px}.editor-screen .total small,.editor-screen .demo-note{font-size:12px;line-height:1.5}
+.editor-screen .step-navigation{margin-top:20px}.editor-screen .step-navigation button{padding:8px 4px}
+.editor-screen .scene-foot>span{display:none}.editor-screen .scene-foot button{font-size:13px;min-height:36px;margin-left:auto}
+.editor-screen #cameraReadout{font-size:12px}.editor-screen .workspace-status{font-size:11px;padding:8px 12px}
+.editor-screen details>summary{font-size:14px;line-height:1.5;padding:12px 0;cursor:pointer;color:var(--ink)}
+.editor-screen .advanced-positioning{margin-top:12px;border-top:1px solid var(--line)}
+.editor-screen .advanced-positioning .free-transform-controls>h4,.editor-screen .advanced-positioning .free-transform-controls>.panel-help:first-of-type{display:none}
+.editor-screen .placement-status{font-size:13px;line-height:1.5}
+.editor-tooltip{font-size:13px;line-height:1.6;max-width:min(300px,calc(100vw - 20px));padding:14px 16px}
+.editor-tooltip strong{font-size:14px}.editor-tooltip kbd{font-size:12px}
+.collection-screen .catalog strong{font-size:15px}.collection-screen .catalog small,.collection-screen .product-colour label{font-size:13px}.collection-screen .product-hex{font-size:13px!important;width:92px}
+@media(max-width:1150px){.editor-screen .studio{grid-template-columns:170px minmax(0,1fr) 320px}.editor-screen .asset-library{padding:14px 10px}.editor-screen .product-thumb{height:58px}.editor-screen .document-actions button{padding:8px}.editor-screen .canvas-top{flex-wrap:wrap}.editor-screen #modelNote{display:none}.editor-screen .viewport-dock [role=tab]{font-size:13px;padding:9px 10px}}
+@media(max-width:850px){.editor-screen .studio{grid-template-columns:125px minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(190px,36%)}.editor-screen .studio>aside{padding:16px}.editor-screen .workflow-tabs{top:-16px}.editor-screen .viewport-dock [role=tabpanel]{max-height:calc(55dvh - 150px)}.editor-screen .product-thumb{height:60px}.editor-screen .viewport-hint{font-size:12px}}
+@media(max-width:540px){body>header{height:52px;flex-basis:52px}.editor-screen .document-bar{padding:10px;gap:8px}.document-bar strong{font-size:14px}.editor-screen .document-actions{display:flex;flex-wrap:wrap;width:100%;gap:6px!important}.editor-screen .document-actions button{font-size:13px;min-height:38px;padding:7px 9px}.editor-screen .document-actions .export-action{margin-left:auto}.editor-screen .studio{grid-template-columns:minmax(0,1fr);grid-template-rows:100px minmax(0,1fr) minmax(180px,34%)}.editor-screen .asset-library{padding:8px}.editor-screen .product{font-size:13px;flex:0 0 82px;padding:5px}.editor-screen .product-thumb{height:48px;margin-bottom:5px}.editor-screen .canvas-top{padding:7px 10px;min-height:34px;flex-wrap:nowrap}.editor-screen .viewport-hint{font-size:12px}.editor-screen .viewport-tools{display:grid;grid-template-columns:repeat(2,32px);gap:2px;padding:4px;left:6px;top:56px}.editor-screen .viewport-tool{width:32px;min-width:32px;height:32px}.editor-screen .viewport-tools .tool-divider{display:none}.editor-screen .viewport-tool .ui-icon{width:20px;height:20px}.editor-screen .viewport-dock{top:8px;right:6px;max-width:calc(100% - 12px)}.editor-screen .viewport-dock [role=tab]{font-size:13px;padding:8px;min-height:38px;gap:5px}.editor-screen .viewport-dock [role=tab] svg{width:16px;height:16px}.editor-screen .viewport-dock.expanded{width:calc(100% - 90px)}.editor-screen .viewport-dock [role=tabpanel]{padding:12px;max-height:calc(50dvh - 170px)}.editor-screen .viewport-dock .dock-close{min-height:38px}.editor-screen .workflow-tabs button{font-size:14px}.editor-screen .studio>aside{padding:14px}.editor-screen .workflow-tabs{top:-14px}.editor-screen input:not([type=range]):not([type=checkbox]):not([type=color]):not([type=file]),.editor-screen select,.editor-screen textarea{font-size:16px}.editor-screen .workspace-status{padding:5px 8px;font-size:11px}.editor-screen .view-controls{min-height:38px;padding:3px 8px}.editor-screen .view-controls .viewport-tool{width:32px;height:32px}.editor-screen .product-hex{font-size:14px!important}}
+.editor-screen .workspace-status{font-size:12px;line-height:1.5}
+@media(max-width:540px){header nav a{font-size:13px}.editor-screen .viewport-tools{grid-template-columns:repeat(2,36px)}.editor-screen .viewport-tool{width:36px;min-width:36px;height:36px}.editor-screen .workspace-status{font-size:12px}}
+header .bag{font-size:13px;min-height:38px}
+dialog #modalBody{font-size:14px;line-height:1.6}dialog .primary,dialog .secondary{font-size:14px;min-height:40px}dialog h2{font-size:22px}
+.collection-screen .collection-head p,.collection-screen .creator p{font-size:15px;line-height:1.6}.collection-screen .creator button{font-size:14px}.collection-screen footer{font-size:12px;line-height:1.5}
