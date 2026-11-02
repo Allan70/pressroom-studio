@@ -109,3 +109,16 @@ document.addEventListener('viewport-panel',e=>openDock(e.detail));
 rail.addEventListener('click',e=>{if(e.target.closest('[data-transform-mode],#pickFreeSurface'))openDock('transform')});
 dock.addEventListener('change',()=>syncTools());
 new MutationObserver(()=>{const busy=scene.getAttribute('aria-busy')==='true';for(const panel of dock.querySelectorAll('[role="tabpanel"]'))panel.inert=busy}).observe(scene,{attributes:true,attributeFilter:['aria-busy']});
+
+const main=document.querySelector('main');
+const editorScreen=document.createElement('section');editorScreen.className='editor-screen';editorScreen.setAttribute('aria-label','Design studio screen');
+main.prepend(editorScreen);editorScreen.append(topbar,studio,footer);
+const collectionScreen=document.createElement('section');collectionScreen.className='collection-screen';collectionScreen.setAttribute('aria-label','Collection screen');
+main.append(collectionScreen);collectionScreen.append($('collection'),document.querySelector('.creator'),main.querySelector('footer'));
+const collectionHeading=$('collection').querySelector('h2');collectionHeading.tabIndex=-1;
+const screenLinks=[...document.querySelectorAll('header a[href="#studio"],header a[href="#collection"]')];
+document.querySelector('header .brand').setAttribute('href','#studio');
+function showScreen(){const collection=location.hash==='#collection';document.body.dataset.screen=collection?'collection':'studio';editorScreen.hidden=collection;collectionScreen.hidden=!collection;for(const link of screenLinks){const active=link.hash===(collection?'#collection':'#studio');link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current')}if(collection)collectionScreen.scrollTop=0;else document.querySelector('.asset-library').scrollTop=0;}
+window.addEventListener('hashchange',()=>{showScreen();if(document.body.dataset.screen==='collection')collectionHeading.focus({preventScroll:true});else topbar.querySelector('strong').focus({preventScroll:true})});
+topbar.querySelector('strong').tabIndex=-1;
+showScreen();
