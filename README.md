@@ -59,7 +59,7 @@ Third-party model rights remain with their original authors. Source archives and
 
 ## Creative workspace
 
-Dark appearance is the default. The Light UI / Dark UI control remembers an explicit preference in localStorage. Product search lives in the left library; design, transform, scene and export controls live in the right inspector. Keys 1–4 switch panels outside text fields. The layout stacks on small screens.
+Dark appearance is the default. The Light UI / Dark UI control remembers an explicit preference in localStorage. Product search lives in the left library. The right inspector contains Design, Layout and Export; keys 1–3 switch these panels outside text fields. The viewport tool rail provides Orbit, Pan, Zoom, surface picking, Move, Rotate, Scale and Frame Artwork. Self-contained View, Transform and Scene tabs hold camera presets, 3D placement options, lighting and backdrop settings. Shift-drag or right-drag pans the view; scroll or pinch zooms. The layout stacks on small screens.
 
 Artwork composition uses an OffscreenCanvas worker with a bounded latest-edit queue and a main-thread fallback. Meshopt model decoding uses up to two workers, with original neutral GLBs as a compatibility fallback. The preview renders on changes instead of continuously and pauses outside the viewport. See [compression tooling](tools/model-codec/README.md) for reproducible encoding and validation.
 
@@ -68,3 +68,11 @@ Artwork composition uses an OffscreenCanvas worker with a bounded latest-edit qu
 The Transform inspector includes a surface picker, local/world Move/Rotate/Scale gizmos, optional snapping, numeric 3D pose, projection reach and surface offset. A picked ray can expose multiple outward-facing surfaces; choose a deeper layer to target geometry beneath an overlap. The selected mesh and projection reach restrict where the decal appears. Actual geometry depth controls occlusion; hidden artwork is not rendered through an overlapping part. Transform handles and guides are omitted from PNG exports. On mugs, free transform switches to a surface decal; Reset print area position restores the handle-safe wrap. Pose, selected mesh, reach and offset are saved per print side in editable design files. Coordinates use the approximate model scale, not a manufacturing template.
 
 During a gizmo drag, projection updates are coalesced to at most 30 per second and the preview temporarily uses a smaller composed texture. Full artwork resolution is restored on release. Run `node verify-surface-picking.mjs` for overlap ordering, interior-face rejection and rotated-pivot checks.
+
+## Interaction performance checks
+
+Run `node verify-projection-cache.mjs` to check decal output, cache invalidation, separate print sides, resource disposal, and synthetic geometry timings. Texture and guide edits reuse projection geometry; model, anchor, projection size, mesh selection, or surface-offset changes rebuild it. Empty designs skip artwork textures and decal geometry. Surface dragging raycasts at most once per animation frame.
+
+To measure browser responsiveness, record the same product selection, panel changes, artwork edits, and surface drags in Chrome DevTools Performance before and after a change. Repeat with CPU and network throttling; record the interaction target and Event Timing duration. Synthetic geometry timings are not INP measurements.
+
+UI updates keep palette buttons in place, update quantity independently, and debounce colour persistence. The 2D surface map draws once per frame only when visible. Thumbnail delivery uses 240 px WebP images with asynchronous decoding; PNG sources remain available. The two most recently used prepared models retain their geometry and materials; eviction disposes GPU resources. Existing model normals are preserved. Preview print textures are capped at 2048 px (1024 while using the gizmo), and PNG capture restores the 4096 px projection limit before rendering the export.
