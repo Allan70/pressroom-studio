@@ -80,3 +80,13 @@ header nav{font-size:14px}
 header .bag{font-size:13px;min-height:38px}
 dialog #modalBody{font-size:14px;line-height:1.6}dialog .primary,dialog .secondary{font-size:14px;min-height:40px}dialog h2{font-size:22px}
 .collection-screen .collection-head p,.collection-screen .creator p{font-size:15px;line-height:1.6}.collection-screen .creator button{font-size:14px}.collection-screen footer{font-size:12px;line-height:1.5}
+.editor-screen .document-bar>div:first-child{min-width:100px;flex:1}
+.editor-screen #projectName{width:100%;max-width:300px;min-width:100px;font-size:15px;font-weight:600;min-height:40px;border:1px solid transparent;background:transparent;padding:8px;color:var(--ink)}
+.editor-screen #projectName:hover{border-color:var(--line);background:var(--field)}.editor-screen #projectName:focus{border-color:var(--accent);background:var(--field)}
+.editor-screen .document-actions{flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:1150px){.editor-screen .document-bar{flex-wrap:wrap}.editor-screen .document-bar>div:first-child{flex-basis:100%}.editor-screen #projectName{max-width:none}.editor-screen .document-actions{width:100%}}
+@media(max-width:540px){.editor-screen .document-actions button{padding:6px 8px;min-height:36px}.editor-screen #saveProject{margin-right:auto}.editor-screen .studio{grid-template-rows:90px minmax(0,1fr) minmax(160px,31%)}.editor-screen .viewport-tools{top:52px}.editor-screen .viewport-tool{width:32px;min-width:32px;height:32px}.editor-screen .viewport-tools{grid-template-columns:repeat(2,32px)}}
+.viewport-shortcuts{margin-top:16px;border-top:1px solid var(--line)}.viewport-shortcuts p{font-size:13px;color:var(--muted)}.viewport-shortcuts dl{margin:12px 0;display:grid;grid-template-columns:1fr;gap:2px;font-size:13px}.viewport-shortcuts dt{font-weight:600;color:var(--ink);margin-top:8px}.viewport-shortcuts dd{margin:0;color:var(--muted);line-height:1.6}
+@media(max-width:540px){.editor-screen #projectName{font-size:16px}}
+@supports(height:100cqh){.viewport-shell{container-type:size}.editor-screen .viewport-dock [role=tabpanel]{max-height:min(440px,calc(100cqh - 72px))}}
+.project-name-label{font-size:13px;color:var(--muted);flex:none}.editor-screen #projectName{border-color:var(--line);background:var(--field)}

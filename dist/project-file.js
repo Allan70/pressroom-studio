@@ -1,0 +1,2 @@
+export function projectName(value){return typeof value==='string'?value.replace(/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,80)||'Untitled project':'Untitled project'}
+export function projectFilename(value){let safe=projectName(value).replace(/[<>:"/\\|?*]/g,'-').replace(/[. ]+$/g,'').replace(/\s+/g,' ').trim();if(/^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(safe))safe='Project '+safe;return (safe||'Untitled project')+'.pressroom.json'}

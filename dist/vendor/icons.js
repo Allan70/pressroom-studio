@@ -1,5 +1,7 @@
 // Local interface icons with original editing-tool glyphs and Lucide symbols. ISC license: ../assets/lucide-LICENSE.txt.
 const paths = {
+  save: '<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12l4 4v12a2 2 0 0 1-2 2ZM7 3v6h10V3M7 21v-8h10v8"/>',
+
   undo: '<path d="M3 10h11a6 6 0 0 1 0 12M3 10l6-6m-6 6 6 6"/>',
   redo: '<path d="M21 10H10a6 6 0 0 0 0 12m11-12-6-6m6 6-6 6"/>',
 

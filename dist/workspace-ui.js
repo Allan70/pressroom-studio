@@ -23,7 +23,7 @@ for (const button of document.querySelectorAll('[data-step]')) {
 }
 const topbar = document.createElement('div');
 topbar.className = 'document-bar';
-topbar.innerHTML = `<div><strong>Untitled design</strong><span class="document-type">Merchandise / 3D studio</span></div><div class="document-actions"><button id="undoEdit" disabled aria-label="Undo" aria-keyshortcuts="Control+z Meta+z" title="Undo (Ctrl/Cmd+Z)">${icon('undo')}<span>Undo</span></button><button id="redoEdit" disabled aria-label="Redo" aria-keyshortcuts="Control+Shift+z Meta+Shift+z Control+y" title="Redo (Ctrl/Cmd+Shift+Z or Ctrl+Y)">${icon('redo')}<span>Redo</span></button><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="openDesign">${icon('file')}Open design</button><button id="exportDesign" class="export-action">Export mockup ↗</button></div>`;
+topbar.innerHTML = `<div><input id="projectName" type="text" maxlength="80" value="Untitled project" aria-label="Project name" spellcheck="false"><span class="document-type">Merchandise / 3D studio</span></div><div class="document-actions"><button id="undoEdit" disabled aria-label="Undo" aria-keyshortcuts="Control+z Meta+z" title="Undo (Ctrl/Cmd+Z)">${icon('undo')}<span>Undo</span></button><button id="redoEdit" disabled aria-label="Redo" aria-keyshortcuts="Control+Shift+z Meta+Shift+z Control+y" title="Redo (Ctrl/Cmd+Shift+Z or Ctrl+Y)">${icon('redo')}<span>Redo</span></button><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="saveProject" aria-keyshortcuts="Control+s Meta+s">${icon('save')}Save project</button><button id="openDesign">${icon('file')}Open design</button><button id="exportDesign" class="export-action">Export mockup ↗</button></div>`;
 studio.before(topbar);
 $('openDesign').onclick = () => $('loadDesign').click();
 $('exportDesign').onclick = () => document.querySelector('[data-step="share"]').click();
@@ -120,8 +120,8 @@ const collectionHeading=$('collection').querySelector('h2');collectionHeading.ta
 const screenLinks=[...document.querySelectorAll('header a[href="#studio"],header a[href="#collection"]')];
 document.querySelector('header .brand').setAttribute('href','#studio');
 function showScreen(){const collection=location.hash==='#collection';document.body.dataset.screen=collection?'collection':'studio';editorScreen.hidden=collection;collectionScreen.hidden=!collection;for(const link of screenLinks){const active=link.hash===(collection?'#collection':'#studio');link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current')}if(collection)collectionScreen.scrollTop=0;else document.querySelector('.asset-library').scrollTop=0;}
-window.addEventListener('hashchange',()=>{showScreen();if(document.body.dataset.screen==='collection')collectionHeading.focus({preventScroll:true});else topbar.querySelector('strong').focus({preventScroll:true})});
-topbar.querySelector('strong').tabIndex=-1;
+window.addEventListener('hashchange',()=>{showScreen();if(document.body.dataset.screen==='collection')collectionHeading.focus({preventScroll:true});else $('projectName').focus({preventScroll:true})});
+
 showScreen();
 
 document.addEventListener('history-restored',()=>{syncTools();$('projectorDepth').disabled=$('surfaceMapping').value==='wrap'});
@@ -185,3 +185,33 @@ const compactViewport=matchMedia('(max-width:540px)');
 const navigationHint=()=>hint.textContent=compactViewport.matches?'Drag to rotate · Pinch to zoom':'Drag to rotate · Shift + drag to pan · Scroll to zoom';
 compactViewport.addEventListener('change',navigationHint);navigationHint();
 help($('clearArt'),'Remove image','Remove the current image. Undo restores it if you change your mind.');
+
+$('saveProject').onclick=()=>$('saveDesign').click();
+$('saveDesign').textContent='Save project to this computer';
+$('loadDesign').previousElementSibling.textContent='Open a saved project';
+help($('projectName'),'Project name','Give this project a name. The name is included when you save it.');
+help($('saveProject'),'Save project','Download an editable project file with your artwork, placement and scene settings. Open the file later to continue editing.','Ctrl/Cmd + S');
+scene.tabIndex=0;
+scene.setAttribute('aria-label','3D viewport. Drag to rotate, Shift-drag to pan, and scroll to zoom. Press question mark for keyboard controls.');
+const shortcutHelp=document.createElement('details');shortcutHelp.className='viewport-shortcuts';
+shortcutHelp.innerHTML='<summary>Mouse and keyboard controls</summary><p>Tools act on the current design. Camera navigation does not change your artwork.</p><dl><dt>Rotate view</dt><dd>O · drag</dd><dt>Pan view</dt><dd>H · drag, or Shift + drag</dd><dt>Zoom view</dt><dd>Z · drag, scroll, or + / −</dd><dt>Move design</dt><dd>V · drag a handle</dd><dt>Rotate design</dt><dd>R · drag a ring</dd><dt>Scale design</dt><dd>S · drag a handle</dd><dt>Pick a surface</dt><dd>I · click the model</dd><dt>Frame design</dt><dd>F</dd><dt>Reset camera</dt><dd>Home</dd><dt>Remove artwork</dt><dd>Delete / Backspace · Undo restores it</dd><dt>Return to view tool</dt><dd>Esc</dd><dt>Save project</dt><dd>Ctrl/Cmd + S</dd><dt>Open project</dt><dd>Ctrl/Cmd + O</dd></dl>';
+viewPanel.append(shortcutHelp);
+const shortcutButtons={o:rail.querySelector('[data-navigation="orbit"]'),h:rail.querySelector('[data-navigation="pan"]'),z:rail.querySelector('[data-navigation="zoom"]'),v:rail.querySelector('[data-transform-mode="translate"]'),r:rail.querySelector('[data-transform-mode="rotate"]'),s:rail.querySelector('[data-transform-mode="scale"]'),i:$('pickFreeSurface'),f:$('focusDesign')};
+for(const [key,button]of Object.entries(shortcutButtons)){button.dataset.tooltipKeys=key.toUpperCase();button.setAttribute('aria-keyshortcuts',key)}
+$('reset').dataset.tooltipKeys='Home';$('zoomIn').dataset.tooltipKeys='+';$('zoomOut').dataset.tooltipKeys='−';$('openDesign').dataset.tooltipKeys='Ctrl/Cmd + O';$('clearArt').dataset.tooltipKeys='Delete / Backspace';
+let temporaryPan=null;
+function restoreTool(){if(temporaryPan){const previous=temporaryPan;temporaryPan=null;previous.click()}}
+function canUseViewportKeys(event){return document.body.dataset.screen==='studio'&&document.body.dataset.startup==='ready'&&scene.getAttribute('aria-busy')!=='true'&&!$('modal').open&&!event.isComposing&&!event.target.closest('input,textarea,select,[contenteditable],dialog')}
+document.addEventListener('keydown',event=>{
+ if(!canUseViewportKeys(event)||event.ctrlKey||event.metaKey||event.altKey||event.defaultPrevented)return;
+ const key=event.key.toLowerCase();
+ if(key===' '){event.preventDefault();if(!event.repeat&&!temporaryPan){temporaryPan=rail.querySelector('[aria-pressed="true"]')||shortcutButtons.o;shortcutButtons.h.click()}return}
+ if(event.repeat&&!['+','=','-'].includes(key))return;
+ if(shortcutButtons[key]){event.preventDefault();shortcutButtons[key].click();return}
+ if(key==='+'||key==='='){event.preventDefault();$('zoomIn').click()}else if(key==='-'){event.preventDefault();$('zoomOut').click()}else if(key==='home'){event.preventDefault();$('reset').click()}else if(key==='escape'){event.preventDefault();temporaryPan=null;shortcutButtons.o.click();openDock(null)}else if(key==='?'){event.preventDefault();openDock('view');shortcutHelp.open=true;shortcutHelp.querySelector('summary').focus()}
+});
+document.addEventListener('keyup',event=>{if(event.key===' '&&temporaryPan){event.preventDefault();restoreTool()}});
+window.addEventListener('blur',restoreTool);
+const projectLabel=document.createElement('label');projectLabel.htmlFor='projectName';projectLabel.className='project-name-label';projectLabel.textContent='Project';$('projectName').before(projectLabel);
+$('openDesign').innerHTML=icon('file')+'Open project';
+help($('openDesign'),'Open project','Open a saved Pressroom project from this computer to continue editing.','Ctrl/Cmd + O');
