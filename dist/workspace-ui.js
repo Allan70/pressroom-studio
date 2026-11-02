@@ -22,7 +22,7 @@ for (const button of document.querySelectorAll('[data-step]')) {
 }
 const topbar = document.createElement('div');
 topbar.className = 'document-bar';
-topbar.innerHTML = `<div><strong>Untitled design</strong><span class="document-type">Merchandise / 3D studio</span></div><div class="document-actions"><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="openDesign">${icon('file')}Open design</button><button id="exportDesign" class="export-action">Export mockup ↗</button></div>`;
+topbar.innerHTML = `<div><strong>Untitled design</strong><span class="document-type">Merchandise / 3D studio</span></div><div class="document-actions"><button id="undoEdit" disabled aria-label="Undo" aria-keyshortcuts="Control+z Meta+z" title="Undo (Ctrl/Cmd+Z)">${icon('undo')}<span>Undo</span></button><button id="redoEdit" disabled aria-label="Redo" aria-keyshortcuts="Control+Shift+z Meta+Shift+z Control+y" title="Redo (Ctrl/Cmd+Shift+Z or Ctrl+Y)">${icon('redo')}<span>Redo</span></button><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="openDesign">${icon('file')}Open design</button><button id="exportDesign" class="export-action">Export mockup ↗</button></div>`;
 studio.before(topbar);
 $('openDesign').onclick = () => $('loadDesign').click();
 $('exportDesign').onclick = () => document.querySelector('[data-step="share"]').click();
@@ -95,7 +95,7 @@ shell.append(dock);
 const viewPanel=dock.querySelector('#viewport-panel-view'),transformPanel=dock.querySelector('#viewport-panel-transform'),scenePanel=dock.querySelector('#viewport-panel-scene');
 viewPanel.innerHTML='<h4>Camera orientation</h4><p class="panel-help">Drag to orbit. Shift + drag to pan. Scroll or pinch to zoom.</p>';
 viewPanel.append(document.querySelector('.camera-presets'));
-transformPanel.append(...optionsBody.childNodes);
+transformPanel.innerHTML='<label class="control-label" for="surfaceMapping">Artwork mapping</label><select id="surfaceMapping"><option value="wrap">Wrap around surface</option><option value="project">Flat projection</option></select><p class="panel-help">Surface wrap follows the model without a depth clipping box.</p>';transformPanel.append(...optionsBody.childNodes);
 transformPanel.append($('resetPrintArea'),$('printAnchorStatus'));
 const sceneSettings=document.querySelector('[data-panel="scene"]');scenePanel.append(...sceneSettings.childNodes);sceneSettings.remove();
 const cameraHeading=scenePanel.querySelector('h4');while(cameraHeading?.nextSibling)viewPanel.append(cameraHeading.nextSibling);cameraHeading?.remove();
@@ -122,3 +122,8 @@ function showScreen(){const collection=location.hash==='#collection';document.bo
 window.addEventListener('hashchange',()=>{showScreen();if(document.body.dataset.screen==='collection')collectionHeading.focus({preventScroll:true});else topbar.querySelector('strong').focus({preventScroll:true})});
 topbar.querySelector('strong').tabIndex=-1;
 showScreen();
+
+document.addEventListener('history-restored',()=>{syncTools();$('projectorDepth').disabled=$('surfaceMapping').value==='wrap'});
+$('projectorDepth').disabled=true;$('projectorOffset').disabled=true;
+
+document.querySelector('.guide-note').textContent='Print outlines and handles are guides. Surface wrap can continue beyond the outline; flat projection crops at the boundary. Guides are omitted from exports.';
