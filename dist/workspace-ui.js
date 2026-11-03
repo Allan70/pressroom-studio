@@ -1,5 +1,5 @@
 import {installTooltips} from './tooltips.js';
-import { icon } from './vendor/icons.js';
+import { icon } from './vendor/icons.js?v=rotate-match-2';
 const $ = id => document.getElementById(id);
 const studio = $('studio');
 const library = document.createElement('section');

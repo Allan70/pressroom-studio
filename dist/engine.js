@@ -1,4 +1,4 @@
-import {createViewportCursor} from './viewport-cursor.js';
+import {createViewportCursor} from './viewport-cursor.js?v=rotate-match-2';
 import {exposedSurfaceHits,pickSurfaceLayer,artworkPivot} from './surface-picking.js';
 import {createProjectorControls} from './projector-controls.js';
 import {wrapFrame,createWrapMaterial,updateWrapMaterial} from './surface-wrap.js';

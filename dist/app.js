@@ -5,7 +5,7 @@ import {createArtworkRenderer} from './artwork-renderer.js';
 import {createSurfaceEditor} from './surface-editor.js';
 import {TEXT_DEFAULTS,paintText} from './text-layout.js';
 import {PRODUCTS as products} from './products.js';
-import {createStudio} from './engine.js?v=free-transform-1';
+import {createStudio} from './engine.js?v=rotate-match-2';
 const $=id=>document.getElementById(id);
 const history=new EditHistory(50);let historyReady=false,historyApplying=false,historyTimer=0,historyGesture=false,queuedHistoryActions=[];
 const autosave=new ProjectAutosave({onStatus:message=>{if($('autosaveStatus'))$('autosaveStatus').textContent=message}});

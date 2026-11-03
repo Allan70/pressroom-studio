@@ -1,4 +1,4 @@
-import {iconMarkup} from './vendor/icons.js';
+import {iconMarkup} from './vendor/icons.js?v=rotate-match-2';
 // Cursor and dock use the same SVG geometry; the white halo keeps it visible on any model.
 export function toolCursor(name,fallback){
  const paths=iconMarkup(name);

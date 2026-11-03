@@ -1,5 +1,5 @@
 // Local interface icons with original editing-tool glyphs and Lucide symbols. ISC license: ../assets/lucide-LICENSE.txt.
-// Move, rotate and pick use bundled lucide-static v0.468.0 move, rotate-3d and crosshair SVGs.
+// Move, rotate and pick use bundled lucide-static v0.468.0 move, rotate-ccw and crosshair SVGs.
 const paths = {
   search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
   export: '<path d="M12 3v12m-4-8 4-4 4 4M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>',
@@ -13,7 +13,7 @@ const paths = {
   zoom: '<circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6M7 10h6m-3-3v6"/>',
   zoomOut: '<circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6M7 10h6"/>',
   move: '<path d="M12 2v20" /><path d="m15 19-3 3-3-3" /><path d="m19 9 3 3-3 3" /><path d="M2 12h20" /><path d="m5 9-3 3 3 3" /><path d="m9 5 3-3 3 3" />',
-  rotate: '<path d="M16.466 7.5C15.643 4.237 13.952 2 12 2 9.239 2 7 6.477 7 12s2.239 10 5 10c.342 0 .677-.069 1-.2" /><path d="m15.194 13.707 3.814 1.86-1.86 3.814" /><path d="M19 15.57c-1.804.885-4.274 1.43-7 1.43-5.523 0-10-2.239-10-5s4.477-5 10-5c4.838 0 8.873 1.718 9.8 4" />',
+  rotate: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" />',
   scale: '<path d="M5 5h14v14H5Z"/><path d="m9 15 6-6m-5 0h5v5"/><path fill="currentColor" stroke="none" d="M3 3h4v4H3zm14 0h4v4h-4zM3 17h4v4H3zm14 0h4v4h-4z"/>',
   transform: '<path d="M5 5h14v14H5Z"/><path fill="currentColor" stroke="none" d="M3 3h4v4H3zm7 0h4v4h-4zm7 0h4v4h-4zM3 10h4v4H3zm14 0h4v4h-4zM3 17h4v4H3zm7 0h4v4h-4zm7 0h4v4h-4z"/>',
   pick: '<circle cx="12" cy="12" r="10" /><line x1="22" x2="18" y1="12" y2="12" /><line x1="6" x2="2" y1="12" y2="12" /><line x1="12" x2="12" y1="6" y2="2" /><line x1="12" x2="12" y1="22" y2="18" />',
