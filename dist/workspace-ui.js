@@ -23,7 +23,7 @@ for (const button of document.querySelectorAll('[data-step]')) {
 }
 const topbar = document.createElement('div');
 topbar.className = 'document-bar';
-topbar.innerHTML = `<div><input id="projectName" type="text" maxlength="80" value="Untitled project" aria-label="Project name" spellcheck="false"><span class="document-type">Merchandise / 3D studio</span></div><div class="document-actions"><button id="undoEdit" disabled aria-label="Undo" aria-keyshortcuts="Control+z Meta+z" title="Undo (Ctrl/Cmd+Z)">${icon('undo')}<span>Undo</span></button><button id="redoEdit" disabled aria-label="Redo" aria-keyshortcuts="Control+Shift+z Meta+Shift+z Control+y" title="Redo (Ctrl/Cmd+Shift+Z or Ctrl+Y)">${icon('redo')}<span>Redo</span></button><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="saveProject" aria-keyshortcuts="Control+s Meta+s">${icon('save')}Save project</button><button id="openDesign">${icon('file')}Open design</button><button id="exportDesign" class="export-action">Export mockup ↗</button></div>`;
+topbar.innerHTML = `<div><input id="projectName" type="text" maxlength="80" value="Untitled project" aria-label="Project name" autocomplete="off" spellcheck="false"><span class="document-type">Merchandise / 3D studio</span></div><div class="document-actions"><button id="undoEdit" disabled aria-label="Undo" aria-keyshortcuts="Control+z Meta+z" title="Undo (Ctrl/Cmd+Z)">${icon('undo')}<span>Undo</span></button><button id="redoEdit" disabled aria-label="Redo" aria-keyshortcuts="Control+Shift+z Meta+Shift+z Control+y" title="Redo (Ctrl/Cmd+Shift+Z or Ctrl+Y)">${icon('redo')}<span>Redo</span></button><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="saveProject" aria-keyshortcuts="Control+s Meta+s">${icon('save')}Save project</button><button id="openDesign">${icon('file')}Open design</button><button id="exportDesign" class="export-action">Export mockup ↗</button></div>`;
 studio.before(topbar);
 $('openDesign').onclick = () => $('loadDesign').click();
 $('exportDesign').onclick = () => document.querySelector('[data-step="share"]').click();
@@ -189,7 +189,7 @@ help($('clearArt'),'Remove image','Remove the current image. Undo restores it if
 $('saveProject').onclick=()=>$('saveDesign').click();
 $('saveDesign').textContent='Save project to this computer';
 $('loadDesign').previousElementSibling.textContent='Open a saved project';
-help($('projectName'),'Project name','Give this project a name. The name is included when you save it.');
+help($('projectName'),'Project name','Click to rename. Press Enter to finish, or Ctrl/Cmd+S to save the project with this name.');
 help($('saveProject'),'Save project','Download an editable project file with your artwork, placement and scene settings. Open the file later to continue editing.','Ctrl/Cmd + S');
 scene.tabIndex=0;
 scene.setAttribute('aria-label','3D viewport. Drag to rotate, Shift-drag to pan, and scroll to zoom. Press question mark for keyboard controls.');
@@ -215,3 +215,5 @@ window.addEventListener('blur',restoreTool);
 const projectLabel=document.createElement('label');projectLabel.htmlFor='projectName';projectLabel.className='project-name-label';projectLabel.textContent='Project';$('projectName').before(projectLabel);
 $('openDesign').innerHTML=icon('file')+'Open project';
 help($('openDesign'),'Open project','Open a saved Pressroom project from this computer to continue editing.','Ctrl/Cmd + O');
+
+import './range-controls.js';

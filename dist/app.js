@@ -198,13 +198,20 @@ document.addEventListener('change',e=>{if(e.target.id==='surfaceMapping'){engine
 
 new MutationObserver(()=>{historyStatus();if($('scene').getAttribute('aria-busy')==='false')scheduleHistory()}).observe($('scene'),{attributes:true,attributeFilter:['aria-busy']});
 
-function updateProjectTitle(){document.title=projectName($('projectName').value)+' — Pressroom'}
+function updateProjectTitle(){const input=$('projectName');document.title=projectName(input.value)+' — Pressroom';input.style.setProperty('--project-title-width',Math.max(16,input.value.length+2)+'ch')}
 document.addEventListener('input',e=>{if(e.target.id==='projectName')updateProjectTitle()});
 document.addEventListener('focusout',e=>{if(e.target.id==='projectName'){e.target.value=projectName(e.target.value);updateProjectTitle()}});
-document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&!e.altKey&&e.key.toLowerCase()==='s'&&!e.isComposing&&document.body.dataset.startup==='ready'){e.preventDefault();$('saveDesign').click()}});
+document.addEventListener('keydown',e=>{if(e.target.id==='projectName'&&e.key==='Enter'&&!e.isComposing){e.preventDefault();e.target.blur();return}if((e.ctrlKey||e.metaKey)&&!e.altKey&&e.key.toLowerCase()==='s'&&!e.isComposing&&document.body.dataset.startup==='ready'){e.preventDefault();if(document.activeElement===$('projectName'))$('projectName').blur();$('saveDesign').click()}});
 document.addEventListener('keydown',event=>{
  if(document.body.dataset.startup!=='ready'||document.body.dataset.screen!=='studio'||$('modal').open||event.isComposing)return;
  if((event.ctrlKey||event.metaKey)&&!event.altKey&&event.key.toLowerCase()==='o'){event.preventDefault();$('loadDesign').click();return}
  if(event.target.closest('input,textarea,select,[contenteditable],dialog'))return;
  if(!event.ctrlKey&&!event.metaKey&&!event.altKey&&['Delete','Backspace'].includes(event.key)&&hasArt&&$('scene').getAttribute('aria-busy')!=='true'){event.preventDefault();commitHistory();if(artMode==='text')$('designText').value='';$('clearArt').click()}
+});
+
+document.addEventListener('reset-artwork-size',()=>{
+ if(!currentPlacement||!spec)return;
+ if(artMode==='text'){textStyle.size=TEXT_DEFAULTS.size;syncTextControls()}
+ $('scale').value=100;$('scaleValue').textContent='100%';$('visualSize').value=100;resizeOrigin=null;
+ place({w:spec.w,h:spec.h});redraw();
 });
