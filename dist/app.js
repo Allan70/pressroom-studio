@@ -14,7 +14,19 @@ function persistColours(){clearTimeout(colourSaveTimer);colourSaveTimer=setTimeo
 function writeColours(){try{sessionStorage.setItem('pressroom-colours-v1',JSON.stringify({saved:savedColours,products:productColors}))}catch{}}
 let savedColourKey='';
 window.addEventListener('pagehide',writeColours);
-function renderSavedColours(){const key=JSON.stringify([savedColours,color[1]]);if(key===savedColourKey)return;savedColourKey=key;const host=$('savedProductColours');host.innerHTML=savedColours.map(c=>`<button type="button" class="swatch" style="background:${c}" aria-label="Use saved colour ${c}" title="${c}" aria-pressed="${color[1].toLowerCase()===c}" data-saved-colour="${c}"></button>`).join('');host.hidden=!savedColours.length;$('saveProductColour').disabled=savedColours.includes(color[1].toLowerCase());host.querySelectorAll('button').forEach(b=>b.onclick=()=>setCustomColour(product.id,b.dataset.savedColour))}
+function renderSavedColours(){
+ const key=JSON.stringify([savedColours,color[1]]);if(key===savedColourKey)return;savedColourKey=key;
+ const host=$('savedProductColours');
+ host.innerHTML=savedColours.map(c=>`<div class="saved-colour"><button type="button" class="swatch" style="background:${c}" aria-label="Use saved colour ${c}" title="${c}" aria-pressed="${color[1].toLowerCase()===c}" data-saved-colour="${c}"></button><button type="button" class="remove-saved-colour" aria-label="Remove saved colour ${c}" title="Remove ${c}" data-remove-colour="${c}">×</button></div>`).join('');
+ host.hidden=!savedColours.length;$('saveProductColour').disabled=savedColours.includes(color[1].toLowerCase());
+ host.querySelectorAll('[data-saved-colour]').forEach(b=>b.onclick=()=>setCustomColour(product.id,b.dataset.savedColour));
+ host.querySelectorAll('[data-remove-colour]').forEach(b=>b.onclick=()=>{
+  const index=savedColours.indexOf(b.dataset.removeColour),restoreFocus=document.activeElement===b;
+  savedColours=savedColours.filter(c=>c!==b.dataset.removeColour);persistColours();renderSavedColours();scheduleHistory();
+  if(restoreFocus){const buttons=host.querySelectorAll('[data-remove-colour]');(buttons[Math.min(index,buttons.length-1)]||$('saveProductColour')).focus()}
+  toast('Saved colour removed');
+ });
+}
 
 function productPalette(p=product){return p.finishes||colors}
 let paletteKey='';

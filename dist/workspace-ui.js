@@ -23,7 +23,7 @@ for (const button of document.querySelectorAll('[data-step]')) {
 }
 const topbar = document.createElement('div');
 topbar.className = 'document-bar';
-topbar.innerHTML = `<div><input id="projectName" type="text" maxlength="80" value="Untitled project" aria-label="Project name" autocomplete="off" spellcheck="false"><span class="document-type">Merchandise / 3D studio</span></div><div class="document-actions"><button id="undoEdit" disabled aria-label="Undo" aria-keyshortcuts="Control+z Meta+z" title="Undo (Ctrl/Cmd+Z)">${icon('undo')}<span>Undo</span></button><button id="redoEdit" disabled aria-label="Redo" aria-keyshortcuts="Control+Shift+z Meta+Shift+z Control+y" title="Redo (Ctrl/Cmd+Shift+Z or Ctrl+Y)">${icon('redo')}<span>Redo</span></button><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="saveProject" aria-keyshortcuts="Control+s Meta+s">${icon('save')}Save project</button><button id="openDesign">${icon('file')}Open design</button><button id="exportDesign" class="export-action">Export mockup ↗</button></div>`;
+topbar.innerHTML = `<div><input id="projectName" type="text" maxlength="80" value="Untitled project" aria-label="Project name" autocomplete="off" spellcheck="false"><span class="document-type">Merchandise / 3D studio</span></div><div class="document-actions"><button id="undoEdit" disabled aria-label="Undo" aria-keyshortcuts="Control+z Meta+z" title="Undo (Ctrl/Cmd+Z)">${icon('undo')}<span>Undo</span></button><button id="redoEdit" disabled aria-label="Redo" aria-keyshortcuts="Control+Shift+z Meta+Shift+z Control+y" title="Redo (Ctrl/Cmd+Shift+Z or Ctrl+Y)">${icon('redo')}<span>Redo</span></button><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="saveProject" aria-keyshortcuts="Control+s Meta+s">${icon('save')}Save project</button><button id="openDesign">${icon('file')}Open design</button><button id="exportDesign" class="export-action">${icon('export')}Export image</button></div>`;
 studio.before(topbar);
 $('openDesign').onclick = () => $('loadDesign').click();
 $('exportDesign').onclick = () => document.querySelector('[data-step="share"]').click();
@@ -168,7 +168,7 @@ $('printAnchorStatus').hidden=true;
 $('artTab').textContent='Image';$('textTab').textContent='Text';
 const designPanel=document.querySelector('[data-panel="design"]');
 for(const heading of designPanel.querySelectorAll('.field-head'))if(heading.textContent.includes('Leave your mark'))heading.textContent='Your design';
-$('saveProductColour').nextElementSibling.textContent='Saved colours are available for this session.';
+$('saveProductColour').nextElementSibling.textContent='Saved for this session. Click × on a colour to remove it.';
 $('saveProductColour').textContent='Save colour';
 designPanel.querySelector('.upload strong').textContent='Add your image';designPanel.querySelector('.upload small').textContent='Choose a PNG or JPG · up to 10 MB';
 const exportPanel=document.querySelector('[data-panel="share"]');exportPanel.querySelector('h3').textContent='Export your design';exportPanel.querySelector('.panel-help').textContent='Save a PNG of the current view. Editing guides are excluded.';
@@ -176,7 +176,7 @@ exportPanel.querySelector('.capture-note').remove();
 scenePanel.querySelector('h3').textContent='Lighting and background';scenePanel.querySelector('.panel-help').textContent='These settings affect the preview and exported image.';
 footer.innerHTML='<span>Changes stay in this browser. Save a design file to keep your work.</span>';
 for(const [id,title,description]of [['surfaceLayer','Overlapping surfaces','Choose which surface receives the design after picking a point.'],['printSide','Design side','The front and back can have separate artwork.'],['resetPlacement','Reset placement','Return the design to its original size, position and rotation. You can undo this action.']])help($(id),title,description);
-$('exportDesign').innerHTML=icon('file')+'Export image';
+$('exportDesign').innerHTML=icon('export')+'Export image';
 $('exportDesign').setAttribute('aria-label','Export image');
 $('how').textContent='Help';
 document.querySelector('header a[href="#collection"]').textContent='Collection';
