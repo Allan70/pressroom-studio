@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {ProjectAutosave} from './dist/project-autosave.js';
+const records=[],writes=[],statuses=[];
+let release;
+const gate=new Promise(resolve=>release=resolve);
+const handle={async queryPermission(){return 'granted'},async createWritable(){return {async write(value){writes.push(JSON.parse(value));if(writes.length===1)await gate},async close(){},async abort(){}}}};
+const store={async write(record){records.push(record)},async read(){return records.at(-1)}};
+const autosave=new ProjectAutosave({store,onStatus:status=>statuses.push(status)});autosave.handle=handle;
+const state={text:'first'},payload={name:'Design',surfaces:{front:{text:'first'}}};
+const first=autosave.save(state,payload);state.text='mutated';payload.surfaces.front.text='mutated';
+const second=autosave.save({text:'latest'},{name:'Design',surfaces:{front:{text:'latest'}}});
+await new Promise(resolve=>setTimeout(resolve,0));assert.equal(writes.length,1);release();await Promise.all([first,second]);
+assert.equal(records[0].state.text,'first');assert.equal(records[0].payload.surfaces.front.text,'first');assert.equal(writes.at(-1).surfaces.front.text,'latest');assert.equal(statuses.at(-1),'Saved to file');
+const restored=new ProjectAutosave({store});assert.equal((await restored.restore()).state.text,'latest');assert.equal(restored.handle,handle);
+handle.queryPermission=async()=>'prompt';const permission=await autosave.save({text:'offline'},{name:'Design'});assert.equal(permission.browserSaved,true);assert.equal(permission.fileSaved,false);assert.match(statuses.at(-1),/reconnect file/);
+handle.queryPermission=async()=>'granted';handle.createWritable=async()=>{throw Error('Disk unavailable')};await autosave.save({text:'safe'},{name:'Design'});assert.equal(records.at(-1).state.text,'safe');assert.match(statuses.at(-1),/file save failed/);
+const failed=new ProjectAutosave({store:{async write(){throw Error('Quota exceeded')}},onStatus:status=>statuses.push(status)});await failed.save({},{});assert.match(statuses.at(-1),/Save failed/);
+console.log('Autosave verified: ordered writes, immutable snapshots, recovery, permission loss, disk errors and storage errors.');

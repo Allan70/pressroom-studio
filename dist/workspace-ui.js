@@ -5,7 +5,7 @@ const studio = $('studio');
 const library = document.createElement('section');
 library.className = 'asset-library';
 library.setAttribute('aria-label', 'Product library');
-library.innerHTML = `<div class="library-heading"><span>ASSETS</span><span>11 blanks</span></div><h2>Product library</h2><label class="asset-search"><span>⌕</span><input id="assetSearch" type="search" placeholder="Find a product…" aria-label="Search products"></label><div id="libraryGrid"></div><p id="searchEmpty" hidden>No matching products.</p>`;
+library.innerHTML = `<div class="library-heading"><span>ASSETS</span><span>11 blanks</span></div><h2>Product library</h2><label class="asset-search">${icon('search')}<input id="assetSearch" type="search" placeholder="Find a product…" aria-label="Search products"></label><div id="libraryGrid"></div><p id="searchEmpty" hidden>No matching products.</p>`;
 studio.prepend(library);
 $('libraryGrid').append($('products'));
 document.querySelector('[data-panel="design"] .field-head').remove();
@@ -23,9 +23,9 @@ for (const button of document.querySelectorAll('[data-step]')) {
 }
 const topbar = document.createElement('div');
 topbar.className = 'document-bar';
-topbar.innerHTML = `<div><input id="projectName" type="text" maxlength="80" value="Untitled project" aria-label="Project name" autocomplete="off" spellcheck="false"><span class="document-type">Merchandise / 3D studio</span></div><div class="document-actions"><button id="undoEdit" disabled aria-label="Undo" aria-keyshortcuts="Control+z Meta+z" title="Undo (Ctrl/Cmd+Z)">${icon('undo')}<span>Undo</span></button><button id="redoEdit" disabled aria-label="Redo" aria-keyshortcuts="Control+Shift+z Meta+Shift+z Control+y" title="Redo (Ctrl/Cmd+Shift+Z or Ctrl+Y)">${icon('redo')}<span>Redo</span></button><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="saveProject" aria-keyshortcuts="Control+s Meta+s">${icon('save')}Save project</button><button id="openDesign">${icon('file')}Open design</button><button id="exportDesign" class="export-action">${icon('export')}Export image</button></div>`;
+topbar.innerHTML = `<div><input id="projectName" type="text" maxlength="80" value="Untitled project" aria-label="Project name" autocomplete="off" spellcheck="false"><span id="autosaveStatus" class="document-type" role="status" aria-live="polite">Autosave ready</span></div><div class="document-actions"><button id="undoEdit" disabled aria-label="Undo" aria-keyshortcuts="Control+z Meta+z" title="Undo (Ctrl/Cmd+Z)">${icon('undo')}<span>Undo</span></button><button id="redoEdit" disabled aria-label="Redo" aria-keyshortcuts="Control+Shift+z Meta+Shift+z Control+y" title="Redo (Ctrl/Cmd+Shift+Z or Ctrl+Y)">${icon('redo')}<span>Redo</span></button><button id="themeToggle" aria-label="Switch to light theme">Light UI</button><button id="saveProject" aria-keyshortcuts="Control+s Meta+s">${icon('save')}Save project</button><button id="openDesign">${icon('file')}Open design</button><button id="exportDesign" class="export-action">${icon('export')}Export image</button></div>`;
 studio.before(topbar);
-$('openDesign').onclick = () => $('loadDesign').click();
+$('openDesign').onclick = () => document.dispatchEvent(new Event('open-project'));
 $('exportDesign').onclick = () => document.querySelector('[data-step="share"]').click();
 function syncTheme() { const dark = document.documentElement.dataset.theme !== 'light'; $('themeToggle').innerHTML = icon(dark ? 'sun' : 'moon') + (dark ? 'Light UI' : 'Dark UI'); $('themeToggle').setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme'); }
 $('themeToggle').onclick = () => { document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'; try {localStorage.setItem('pressroom-theme', document.documentElement.dataset.theme)} catch {} syncTheme(); };
